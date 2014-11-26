@@ -1,0 +1,1016 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1343\cocoasubrtf160
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\fswiss\fcharset0 Helvetica;\f2\fmodern\fcharset0 Courier;
+}
+{\colortbl;\red255\green255\blue255;\red26\green26\blue26;\red16\green60\blue192;\red246\green246\blue246;
+\red193\green193\blue193;\red34\green34\blue34;\red88\green196\blue193;\red234\green121\blue57;\red135\green135\blue135;
+\red191\green131\blue194;\red109\green188\blue135;\red217\green96\blue103;\red62\green0\blue63;\red237\green237\blue237;
+}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww24500\viewh14580\viewkind0
+\deftab720
+\pard\pardeftab720\sa200
+
+\f0\fs20 \cf2 \expnd0\expndtw0\kerning0
+the lesson is simple but i tried to make the homework harder. let us know if you get stuck. excuse the typos, i wrote this fast.
+\f1\b\fs56 \cf0 \expnd0\expndtw0\kerning0
+\uc0\u8232 \
+\pard\pardeftab720
+
+\f0\b0\fs26 \cf2 \expnd0\expndtw0\kerning0
+\
+\
+\pard\pardeftab720\sa200
+
+\f1\b\fs56 \cf0 \expnd0\expndtw0\kerning0
+Lesson 2\
+\pard\pardeftab720\sl440\sa300
+
+\b0\fs28 \cf0 \expnd0\expndtw0\kerning0
+In this lesson, you will make your first Python Flask application. We will show you the very basics of how to do this; then point you at the docs, and give you a lesson which will require you to research the docs and experiment.\
+\pard\pardeftab720\sa200
+
+\b\fs48 \cf0 \expnd0\expndtw0\kerning0
+How it works\
+\pard\pardeftab720\sl440\sa300
+
+\b0\fs28 \cf0 \expnd0\expndtw0\kerning0
+Flask is a very simple framework; at the highest level you simply define \'91routes\'92. Consider a route and path when you go to a URL on a website. For example, if you wanted to go to\'a0{\field{\*\fldinst{HYPERLINK "http://rob.com/something/etc"}}{\fldrslt 
+\f2 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\ul \ulc3 rob.com/something/etc}}, you would define a route for\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+/something/etc
+\f1 \cb1 \expnd0\expndtw0\kerning0
+. Under that route, you then define what you want to grab from the request (for example, GET or POST variables), then what to do with them and what to return to the user.\
+Returning information to the user is done via\'a0
+\i \expnd0\expndtw0\kerning0
+templates
+\i0 \expnd0\expndtw0\kerning0
+.\'a0\
+You can consider a template an HTML document, but instead of being static, you can pass variables into it and use logic functions to change how the tempalte is rendered back to the user; we will show you can example of this.\
+\pard\pardeftab720\sa200
+
+\b\fs48 \cf0 \expnd0\expndtw0\kerning0
+Your first web app\
+\pard\pardeftab720\sl440\sa300
+
+\b0\fs28 \cf0 \expnd0\expndtw0\kerning0
+The Flask docs are available here ( {\field{\*\fldinst{HYPERLINK "http://flask.pocoo.org/docs/0.10/"}}{\fldrslt \cf3 \expnd0\expndtw0\kerning0
+\ul \ulc3 http://flask.pocoo.org/docs/0.10/}} ); you will be referring to this quite a bit. Actually, you\'92ll probably want to refer this doc the most, ( {\field{\*\fldinst{HYPERLINK "http://flask.pocoo.org/docs/0.10/api/"}}{\fldrslt \cf3 \expnd0\expndtw0\kerning0
+\ul \ulc3 http://flask.pocoo.org/docs/0.10/api/}} )\'a0\
+We\'92ll copy the starter right out of the docs.\'a0\
+First, setup our virtual env, activate it, then install Flask.\
+\pard\pardeftab720\sl380
+
+\fs26 \cf5 \cb6 \expnd0\expndtw0\kerning0
+(venv)chris:robslessons_3\cf7 \expnd0\expndtw0\kerning0
+/\cf5 \expnd0\expndtw0\kerning0
+ $ virtualenv venv \cf7 \expnd0\expndtw0\kerning0
+&&\cf5 \expnd0\expndtw0\kerning0
+ \\\
+                             source venv\cf7 \expnd0\expndtw0\kerning0
+/\cf5 \expnd0\expndtw0\kerning0
+bin\cf7 \expnd0\expndtw0\kerning0
+/\cf5 \expnd0\expndtw0\kerning0
+activate \cf7 \expnd0\expndtw0\kerning0
+&&\cf5 \expnd0\expndtw0\kerning0
+ \\\
+                             pip install Flask\
+\
+(venv)chris:robslessons_3\cf7 \expnd0\expndtw0\kerning0
+/\cf5 \expnd0\expndtw0\kerning0
+ $ pip freeze\
+Flask\cf7 \expnd0\expndtw0\kerning0
+==\cf8 \expnd0\expndtw0\kerning0
+0.10\cf5 \expnd0\expndtw0\kerning0
+.\cf8 \expnd0\expndtw0\kerning0
+1\cf5 \expnd0\expndtw0\kerning0
+\
+Jinja2\cf7 \expnd0\expndtw0\kerning0
+==\cf8 \expnd0\expndtw0\kerning0
+2.7\cf5 \expnd0\expndtw0\kerning0
+.\cf8 \expnd0\expndtw0\kerning0
+3\cf5 \expnd0\expndtw0\kerning0
+\
+MarkupSafe\cf7 \expnd0\expndtw0\kerning0
+==\cf8 \expnd0\expndtw0\kerning0
+0.23\cf5 \expnd0\expndtw0\kerning0
+\
+Werkzeug\cf7 \expnd0\expndtw0\kerning0
+==\cf8 \expnd0\expndtw0\kerning0
+0.9\cf5 \expnd0\expndtw0\kerning0
+.\cf8 \expnd0\expndtw0\kerning0
+6\cf5 \expnd0\expndtw0\kerning0
+\
+itsdangerous\cf7 \expnd0\expndtw0\kerning0
+==\cf8 \expnd0\expndtw0\kerning0
+0.24\cf5 \expnd0\expndtw0\kerning0
+\
+wsgiref\cf7 \expnd0\expndtw0\kerning0
+==\cf8 \expnd0\expndtw0\kerning0
+0.1\cf5 \expnd0\expndtw0\kerning0
+.\cf8 \expnd0\expndtw0\kerning0
+2\cf5 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl440\sa300
+
+\fs28 \cf0 \cb1 \expnd0\expndtw0\kerning0
+Ok, let\'92s write a web app.\'a0\
+\pard\pardeftab720\sl380
+
+\fs26 \cf9 \cb6 \expnd0\expndtw0\kerning0
+#!/usr/bin/env python\
+\pard\pardeftab720\sl380
+\cf5 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl380
+\cf10 \expnd0\expndtw0\kerning0
+from\cf5 \expnd0\expndtw0\kerning0
+ flask \cf10 \expnd0\expndtw0\kerning0
+import\cf5 \expnd0\expndtw0\kerning0
+ Flask\
+app \cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+ Flask(__name__)\
+\
+@app.route(\cf11 \expnd0\expndtw0\kerning0
+"/"\cf5 \expnd0\expndtw0\kerning0
+)\
+\cf10 \expnd0\expndtw0\kerning0
+def\cf5 \expnd0\expndtw0\kerning0
+ hello():\
+    \cf10 \expnd0\expndtw0\kerning0
+return\cf5 \expnd0\expndtw0\kerning0
+ \cf11 \expnd0\expndtw0\kerning0
+"Hello World!"\cf5 \expnd0\expndtw0\kerning0
+\
+\
+\cf10 \expnd0\expndtw0\kerning0
+if\cf5 \expnd0\expndtw0\kerning0
+ __name__ \cf7 \expnd0\expndtw0\kerning0
+==\cf5 \expnd0\expndtw0\kerning0
+ \cf11 \expnd0\expndtw0\kerning0
+"__main__"\cf5 \expnd0\expndtw0\kerning0
+:\
+    app.run()\
+\pard\pardeftab720\sl440\sa300
+
+\fs28 \cf0 \cb1 \expnd0\expndtw0\kerning0
+and let\'92s run it\
+\pard\pardeftab720\sl380
+
+\f2\fs26 \cf0 \cb4 \expnd0\expndtw0\kerning0
+(venv)chris:robslessons_3/ $ chmod u+x app.py\
+(venv)chris:robslessons_3/ $ ./app.py\
+ * Running on {\field{\*\fldinst{HYPERLINK "http://127.0.0.1:5000/"}}{\fldrslt \cf3 \expnd0\expndtw0\kerning0
+\ul \ulc3 http://127.0.0.1:5000/}}\
+\pard\pardeftab720\sl440\sa300
+
+\f1\fs28 \cf0 \cb1 \expnd0\expndtw0\kerning0
+Flask come\'92s with a built in developer web interface; when you run the app, it will listen on port :5000. This is not how you would deploy this app, but it makes it very convenient for deving. When your app is actually complete, you\'92d want to deploy it with a real web server in front (like nginx, apache, or gunicorn).\
+While its running, your web logs will print out to STDOUT, as well as errors. So its good to just\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+./
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0the app and let it run, to keep an eye on it for logging purposes. We\'92ll deal with proper logging and exception handling way later on.\
+\pard\pardeftab720\sa200
+
+\b\fs48 \cf0 \expnd0\expndtw0\kerning0
+See whatsup\
+\pard\pardeftab720\sl440\sa300
+
+\b0\fs28 \cf0 \expnd0\expndtw0\kerning0
+When you hit it with a browser, you see what you\'92d expect (showing curl here since I dont feel like using screenshots)\
+\pard\pardeftab720\sl380
+
+\fs26 \cf5 \cb6 \expnd0\expndtw0\kerning0
+chris:robslessons_3\cf7 \expnd0\expndtw0\kerning0
+/\cf5 \expnd0\expndtw0\kerning0
+ $ curl \cf8 \expnd0\expndtw0\kerning0
+127.0\cf5 \expnd0\expndtw0\kerning0
+.\cf8 \expnd0\expndtw0\kerning0
+0.1\cf5 \expnd0\expndtw0\kerning0
+:\cf8 \expnd0\expndtw0\kerning0
+5000\cf5 \expnd0\expndtw0\kerning0
+\
+Hello World\cf7 \expnd0\expndtw0\kerning0
+!%\cf5 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl440\sa300
+
+\fs28 \cf0 \cb1 \expnd0\expndtw0\kerning0
+we also see the request in our logs (STDOUT)\
+\pard\pardeftab720\sl380
+
+\fs26 \cf8 \cb6 \expnd0\expndtw0\kerning0
+127.0\cf5 \expnd0\expndtw0\kerning0
+.\cf8 \expnd0\expndtw0\kerning0
+0.1\cf5 \expnd0\expndtw0\kerning0
+ \cf7 \expnd0\expndtw0\kerning0
+-\cf5 \expnd0\expndtw0\kerning0
+ \cf7 \expnd0\expndtw0\kerning0
+-\cf5 \expnd0\expndtw0\kerning0
+ [\cf8 \expnd0\expndtw0\kerning0
+15\cf7 \expnd0\expndtw0\kerning0
+/\cf5 \expnd0\expndtw0\kerning0
+Nov\cf7 \expnd0\expndtw0\kerning0
+/\cf8 \expnd0\expndtw0\kerning0
+2014\cf5 \expnd0\expndtw0\kerning0
+ \cf8 \expnd0\expndtw0\kerning0
+15\cf5 \expnd0\expndtw0\kerning0
+:\cf8 \expnd0\expndtw0\kerning0
+56\cf5 \expnd0\expndtw0\kerning0
+:\cf8 \expnd0\expndtw0\kerning0
+34\cf5 \expnd0\expndtw0\kerning0
+] \cf11 \expnd0\expndtw0\kerning0
+"GET / HTTP/1.1"\cf5 \expnd0\expndtw0\kerning0
+ \cf8 \expnd0\expndtw0\kerning0
+200\cf5 \expnd0\expndtw0\kerning0
+ \cf7 \expnd0\expndtw0\kerning0
+-\cf5 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sa200
+
+\b\fs48 \cf0 \cb1 \expnd0\expndtw0\kerning0
+Templates\
+\pard\pardeftab720\sl440\sa300
+
+\b0\fs28 \cf0 \expnd0\expndtw0\kerning0
+This example just returns text. Pretty boring. Normally we have the web application deliver formatted HTML or, some sort of serialized object or whatever. First, we\'92ll cover templates. Again, a template is essentially an HTML document, with additional syntax that act as placeholders for variable(s), and expressions which you can use to perform login on the page generation.\
+\pard\pardeftab720\sa200
+
+\b\fs36 \cf0 \expnd0\expndtw0\kerning0
+Request Args\
+\pard\pardeftab720\sl440\sa300
+
+\b0\fs28 \cf0 \expnd0\expndtw0\kerning0
+First, lets take some input from the user. We\'92ll mod the script to import\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+request
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0from flask and plauy with that. ( docs \'96> {\field{\*\fldinst{HYPERLINK "http://flask.pocoo.org/docs/0.10/reqcontext/"}}{\fldrslt \cf3 \expnd0\expndtw0\kerning0
+\ul \ulc3 http://flask.pocoo.org/docs/0.10/reqcontext/}} )\
+\pard\pardeftab720\sl380
+
+\fs26 \cf9 \cb6 \expnd0\expndtw0\kerning0
+#!/usr/bin/env python\
+\pard\pardeftab720\sl380
+\cf5 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl380
+\cf10 \expnd0\expndtw0\kerning0
+from\cf5 \expnd0\expndtw0\kerning0
+ flask \cf10 \expnd0\expndtw0\kerning0
+import\cf5 \expnd0\expndtw0\kerning0
+ Flask\
+\cf10 \expnd0\expndtw0\kerning0
+from\cf5 \expnd0\expndtw0\kerning0
+ flask \cf10 \expnd0\expndtw0\kerning0
+import\cf5 \expnd0\expndtw0\kerning0
+ request\
+\
+app \cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+ Flask(__name__)\
+\
+@app.route(\cf11 \expnd0\expndtw0\kerning0
+"/"\cf5 \expnd0\expndtw0\kerning0
+)\
+\cf10 \expnd0\expndtw0\kerning0
+def\cf5 \expnd0\expndtw0\kerning0
+ hello():\
+    \cf10 \expnd0\expndtw0\kerning0
+try\cf5 \expnd0\expndtw0\kerning0
+:\
+        name \cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+ request.args.get(\cf11 \expnd0\expndtw0\kerning0
+'name'\cf5 \expnd0\expndtw0\kerning0
+)\
+        assert name\
+    \cf10 \expnd0\expndtw0\kerning0
+except\cf5 \expnd0\expndtw0\kerning0
+:\
+        name \cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+ \cf11 \expnd0\expndtw0\kerning0
+'lame'\cf5 \expnd0\expndtw0\kerning0
+\
+    \cf10 \expnd0\expndtw0\kerning0
+return\cf5 \expnd0\expndtw0\kerning0
+ \cf11 \expnd0\expndtw0\kerning0
+"Hello %s"\cf5 \expnd0\expndtw0\kerning0
+ \cf7 \expnd0\expndtw0\kerning0
+%\cf5 \expnd0\expndtw0\kerning0
+ str(name)\
+\
+\cf10 \expnd0\expndtw0\kerning0
+if\cf5 \expnd0\expndtw0\kerning0
+ __name__ \cf7 \expnd0\expndtw0\kerning0
+==\cf5 \expnd0\expndtw0\kerning0
+ \cf11 \expnd0\expndtw0\kerning0
+"__main__"\cf5 \expnd0\expndtw0\kerning0
+:\
+    app.run()\
+\pard\pardeftab720\sl440\sa300
+
+\fs28 \cf0 \cb1 \expnd0\expndtw0\kerning0
+restart your app.py, since you made changes to it.\
+\pard\pardeftab720
+
+\f0\fs26 \cf2 \expnd0\expndtw0\kerning0
+Aside:if you are unfamiliar with assertions, you can use it for assertion things are true.\
+in this case, i just simply say 'assert name'. which basically means assert that 'name' is anything but None. if the user does NOT apply a name parameter, name will be None; the assertion will throw an exception, which will be cause by the 'except:' clause and that block of code will be executed.\
+we'll talk more later about exception handling, where to raise them, where to handle them, etc\
+\pard\pardeftab720\sl440\sa300
+
+\f1\fs28 \cf0 \expnd0\expndtw0\kerning0
+\
+lets hit it with our name parameter\
+\pard\pardeftab720\sl380
+
+\fs26 \cf5 \cb6 \expnd0\expndtw0\kerning0
+chris:robslessons_3\cf7 \expnd0\expndtw0\kerning0
+/\cf5 \expnd0\expndtw0\kerning0
+ $ curl \cf11 \expnd0\expndtw0\kerning0
+"{\field{\*\fldinst{HYPERLINK "http://127.0.0.1:5000/?name=mofucka"}}{\fldrslt \cf3 \expnd0\expndtw0\kerning0
+\ul \ulc3 127.0.0.1:5000?name=mofucka}}"\cf5 \expnd0\expndtw0\kerning0
+\
+Hello mofucka\cf7 \expnd0\expndtw0\kerning0
+%\cf5 \expnd0\expndtw0\kerning0
+\
+\
+chris:robslessons_3\cf7 \expnd0\expndtw0\kerning0
+/\cf5 \expnd0\expndtw0\kerning0
+ $ curl \cf11 \expnd0\expndtw0\kerning0
+"{\field{\*\fldinst{HYPERLINK "http://127.0.0.1:5000/"}}{\fldrslt \cf3 \expnd0\expndtw0\kerning0
+\ul \ulc3 127.0.0.1:5000}}"\cf5 \expnd0\expndtw0\kerning0
+\
+Hello lame\cf7 \expnd0\expndtw0\kerning0
+%\cf5 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sa200
+
+\b\fs36 \cf0 \cb1 \expnd0\expndtw0\kerning0
+Rendering a Template\
+\pard\pardeftab720\sl440\sa300
+
+\b0\fs28 \cf0 \expnd0\expndtw0\kerning0
+Cool, so now we can get some input from a user. Lets create a template, and pass the input to that template. ( docs \'96> {\field{\*\fldinst{HYPERLINK "http://flask.pocoo.org/docs/0.10/templating/"}}{\fldrslt \cf3 \expnd0\expndtw0\kerning0
+\ul \ulc3 http://flask.pocoo.org/docs/0.10/templating/}} )\
+We have to import it,\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+from flask import render_template
+\f1 \cb1 \expnd0\expndtw0\kerning0
+, so add that to your script.\
+Next, I want to show you the difference between using a template and not. So we\'92re going to make a new route that essentially does the same thing that we have, but its going to use a template.\
+\pard\pardeftab720\sl380
+
+\fs26 \cf9 \cb6 \expnd0\expndtw0\kerning0
+#!/usr/bin/env python\
+\pard\pardeftab720\sl380
+\cf5 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl380
+\cf10 \expnd0\expndtw0\kerning0
+from\cf5 \expnd0\expndtw0\kerning0
+ flask \cf10 \expnd0\expndtw0\kerning0
+import\cf5 \expnd0\expndtw0\kerning0
+ Flask\
+\cf10 \expnd0\expndtw0\kerning0
+from\cf5 \expnd0\expndtw0\kerning0
+ flask \cf10 \expnd0\expndtw0\kerning0
+import\cf5 \expnd0\expndtw0\kerning0
+ request\
+\cf10 \expnd0\expndtw0\kerning0
+from\cf5 \expnd0\expndtw0\kerning0
+ flask \cf10 \expnd0\expndtw0\kerning0
+import\cf5 \expnd0\expndtw0\kerning0
+ render_template\
+\
+app \cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+ Flask(__name__)\
+\
+@app.route(\cf11 \expnd0\expndtw0\kerning0
+"/"\cf5 \expnd0\expndtw0\kerning0
+)\
+\cf10 \expnd0\expndtw0\kerning0
+def\cf5 \expnd0\expndtw0\kerning0
+ hello():\
+    \cf10 \expnd0\expndtw0\kerning0
+try\cf5 \expnd0\expndtw0\kerning0
+:\
+        name \cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+ request.args.get(\cf11 \expnd0\expndtw0\kerning0
+'name'\cf5 \expnd0\expndtw0\kerning0
+)\
+        \cf10 \expnd0\expndtw0\kerning0
+assert\cf5 \expnd0\expndtw0\kerning0
+ name\
+    \cf10 \expnd0\expndtw0\kerning0
+except\cf5 \expnd0\expndtw0\kerning0
+:\
+        name \cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+ \cf11 \expnd0\expndtw0\kerning0
+'lame'\cf5 \expnd0\expndtw0\kerning0
+\
+    \cf10 \expnd0\expndtw0\kerning0
+return\cf5 \expnd0\expndtw0\kerning0
+ \cf11 \expnd0\expndtw0\kerning0
+"Hello %s"\cf5 \expnd0\expndtw0\kerning0
+ \cf7 \expnd0\expndtw0\kerning0
+%\cf5 \expnd0\expndtw0\kerning0
+ str(name)\
+\
+@app.route(\cf11 \expnd0\expndtw0\kerning0
+"/render"\cf5 \expnd0\expndtw0\kerning0
+)\
+\cf10 \expnd0\expndtw0\kerning0
+def\cf5 \expnd0\expndtw0\kerning0
+ render():\
+    \cf10 \expnd0\expndtw0\kerning0
+try\cf5 \expnd0\expndtw0\kerning0
+:\
+        name \cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+ request.args.get(\cf11 \expnd0\expndtw0\kerning0
+'name'\cf5 \expnd0\expndtw0\kerning0
+)\
+        \cf10 \expnd0\expndtw0\kerning0
+assert\cf5 \expnd0\expndtw0\kerning0
+ name\
+    \cf10 \expnd0\expndtw0\kerning0
+except\cf5 \expnd0\expndtw0\kerning0
+:\
+        name \cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+ \cf11 \expnd0\expndtw0\kerning0
+'lame'\cf5 \expnd0\expndtw0\kerning0
+\
+    \cf10 \expnd0\expndtw0\kerning0
+return\cf5 \expnd0\expndtw0\kerning0
+ render_template(\cf11 \expnd0\expndtw0\kerning0
+'tutorial.html'\cf5 \expnd0\expndtw0\kerning0
+,\
+                           name\cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+name)\
+\
+\cf10 \expnd0\expndtw0\kerning0
+if\cf5 \expnd0\expndtw0\kerning0
+ __name__ \cf7 \expnd0\expndtw0\kerning0
+==\cf5 \expnd0\expndtw0\kerning0
+ \cf11 \expnd0\expndtw0\kerning0
+"__main__"\cf5 \expnd0\expndtw0\kerning0
+:\
+    app.run()\
+\pard\pardeftab720\sl440\sa300
+
+\fs28 \cf0 \cb1 \expnd0\expndtw0\kerning0
+Review the above, we made a new route called\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+/render
+\f1 \cb1 \expnd0\expndtw0\kerning0
+. It does the same thing as\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+/
+\f1 \cb1 \expnd0\expndtw0\kerning0
+, but instead of returning a string, it returns\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+render_template
+\f1 \cb1 \expnd0\expndtw0\kerning0
+. Also, we pass a keyword called\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+name
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0to it, with a value of\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+name
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0(which is what we get from the\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+name
+\f1 \cb1 \expnd0\expndtw0\kerning0
+parameter).\
+\pard\pardeftab720\sa200
+
+\b\fs32 \cf0 \expnd0\expndtw0\kerning0
+Making the template\
+\pard\pardeftab720\sl440\sa300
+
+\f2\b0\fs28 \cf0 \cb4 \expnd0\expndtw0\kerning0
+render_template
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0by default looks for a folder called\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+templates
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0in the current dir. In there, it will look for the the you specify; here,\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+tutorial.html
+\f1 \cb1 \expnd0\expndtw0\kerning0
+. Let\'92s create those.\
+\pard\pardeftab720\sl380
+
+\fs26 \cf5 \cb6 \expnd0\expndtw0\kerning0
+chris:robslessons_3\cf7 \expnd0\expndtw0\kerning0
+/\cf5 \expnd0\expndtw0\kerning0
+ $ mkdir templates\
+chris:robslessons_3\cf7 \expnd0\expndtw0\kerning0
+/\cf5 \expnd0\expndtw0\kerning0
+ $ touch templates\cf7 \expnd0\expndtw0\kerning0
+/\cf5 \expnd0\expndtw0\kerning0
+tutorial.html\
+\pard\pardeftab720\sl440\sa300
+
+\fs28 \cf0 \cb1 \expnd0\expndtw0\kerning0
+Ok lets edit the template.\
+We\'92re gonna keep this very basic, its just gonna be a\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+h1
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0tag.\
+\pard\pardeftab720\sl380
+
+\fs26 \cf5 \cb6 \expnd0\expndtw0\kerning0
+chris:robslessons_3\cf7 \expnd0\expndtw0\kerning0
+/\cf5 \expnd0\expndtw0\kerning0
+ $ cat templates\cf7 \expnd0\expndtw0\kerning0
+/\cf5 \expnd0\expndtw0\kerning0
+tutorial.html\
+<\cf12 \expnd0\expndtw0\kerning0
+h1\cf5 \expnd0\expndtw0\kerning0
+>Hello<\cf12 \expnd0\expndtw0\kerning0
+small\cf5 \expnd0\expndtw0\kerning0
+> \{\{name\}\}!<\cf12 \expnd0\expndtw0\kerning0
+small\cf5 \expnd0\expndtw0\kerning0
+></\cf12 \expnd0\expndtw0\kerning0
+h1\cf5 \expnd0\expndtw0\kerning0
+>\
+\pard\pardeftab720\sl440\sa300
+
+\fs28 \cf0 \cb1 \expnd0\expndtw0\kerning0
+So the odd thing here is the\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+\{\{
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0and\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+\}\}
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0notation. This is described in the templating docs. Things between those braces get rendered by the templating language. In the simplest of cases, it will just be the value you specify (such as in this case). Recall from\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+app.py
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0we passed a variable called\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+name
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0with a value of whatever was in the\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+name
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0variable. Here in the template, we\'92re asking it to render\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+name.
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0Let\'92s try it out\
+\pard\pardeftab720\sl380
+
+\fs26 \cf5 \cb6 \expnd0\expndtw0\kerning0
+chris:robslessons_3\cf7 \expnd0\expndtw0\kerning0
+/\cf5 \expnd0\expndtw0\kerning0
+ $ curl \cf11 \expnd0\expndtw0\kerning0
+"{\field{\*\fldinst{HYPERLINK "http://127.0.0.1:5000/render?name=mofucka"}}{\fldrslt \cf3 \expnd0\expndtw0\kerning0
+\ul \ulc3 127.0.0.1:5000/render?name=mofucka}}"\cf5 \expnd0\expndtw0\kerning0
+\
+\cf7 \expnd0\expndtw0\kerning0
+<\cf5 \expnd0\expndtw0\kerning0
+h1\cf7 \expnd0\expndtw0\kerning0
+>\cf5 \expnd0\expndtw0\kerning0
+Hello\cf7 \expnd0\expndtw0\kerning0
+<\cf5 \expnd0\expndtw0\kerning0
+small\cf7 \expnd0\expndtw0\kerning0
+>\cf5 \expnd0\expndtw0\kerning0
+ mofucka\cf7 \expnd0\expndtw0\kerning0
+!<\cf5 \expnd0\expndtw0\kerning0
+small\cf7 \expnd0\expndtw0\kerning0
+></\cf5 \expnd0\expndtw0\kerning0
+h1\cf7 \expnd0\expndtw0\kerning0
+>\cf5 \expnd0\expndtw0\kerning0
+\
+\
+chris:robslessons_3\cf7 \expnd0\expndtw0\kerning0
+/\cf5 \expnd0\expndtw0\kerning0
+ $ curl \cf11 \expnd0\expndtw0\kerning0
+"{\field{\*\fldinst{HYPERLINK "http://127.0.0.1:5000/render"}}{\fldrslt \cf3 \expnd0\expndtw0\kerning0
+\ul \ulc3 127.0.0.1:5000/render}}"\cf5 \expnd0\expndtw0\kerning0
+\
+\cf7 \expnd0\expndtw0\kerning0
+<\cf5 \expnd0\expndtw0\kerning0
+h1\cf7 \expnd0\expndtw0\kerning0
+>\cf5 \expnd0\expndtw0\kerning0
+Hello\cf7 \expnd0\expndtw0\kerning0
+<\cf5 \expnd0\expndtw0\kerning0
+small\cf7 \expnd0\expndtw0\kerning0
+>\cf5 \expnd0\expndtw0\kerning0
+ lame\cf7 \expnd0\expndtw0\kerning0
+!<\cf5 \expnd0\expndtw0\kerning0
+small\cf7 \expnd0\expndtw0\kerning0
+></\cf5 \expnd0\expndtw0\kerning0
+h1\cf7 \expnd0\expndtw0\kerning0
+>%\cf5 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl440\sa300
+
+\fs28 \cf0 \cb1 \expnd0\expndtw0\kerning0
+Ok simple enough, it renders the template and uses the variable we passed to it.\
+\pard\pardeftab720\sa200
+
+\b\fs36 \cf0 \expnd0\expndtw0\kerning0
+Autoescaping\
+\pard\pardeftab720\sl440\sa300
+
+\b0\fs28 \cf0 \expnd0\expndtw0\kerning0
+Templates do a ton of useful things for us; aside from having a convenient way of reusing the same code and dynamically generating different things, all modern templating langauges do autoescaping.\
+Let\'92s try an XSS on our first endpoint.\
+\pard\pardeftab720\sl380
+
+\fs26 \cf5 \cb6 \expnd0\expndtw0\kerning0
+chris:robslessons_3\cf7 \expnd0\expndtw0\kerning0
+/\cf5 \expnd0\expndtw0\kerning0
+ $ curl \cf11 \expnd0\expndtw0\kerning0
+"{\field{\*\fldinst{HYPERLINK "http://127.0.0.1:5000/?name="}}{\fldrslt \cf3 \expnd0\expndtw0\kerning0
+\ul \ulc3 127.0.0.1:5000/?name=}}<script>alert('woot')</script>"\cf5 \expnd0\expndtw0\kerning0
+\
+Hello <\cf12 \expnd0\expndtw0\kerning0
+script\cf5 \expnd0\expndtw0\kerning0
+>alert('woot')</\cf12 \expnd0\expndtw0\kerning0
+script\cf5 \expnd0\expndtw0\kerning0
+>\
+\pard\pardeftab720\sl440\sa300
+
+\fs28 \cf0 \cb1 \expnd0\expndtw0\kerning0
+ah balls, we\'92ve been owned. (if you try this in a browser and it doesnt work, its bc modern browsers protect against basic reflected attacks like this. try firefox)\
+Let\'92s try the same attack but using the rendered template.\
+\pard\pardeftab720\sl380
+
+\fs26 \cf5 \cb6 \expnd0\expndtw0\kerning0
+chris:robslessons_3\cf7 \expnd0\expndtw0\kerning0
+/\cf5 \expnd0\expndtw0\kerning0
+ $ curl \cf11 \expnd0\expndtw0\kerning0
+"{\field{\*\fldinst{HYPERLINK "http://127.0.0.1:5000/render?name="}}{\fldrslt \cf3 \expnd0\expndtw0\kerning0
+\ul \ulc3 127.0.0.1:5000/render?name=}}<script>alert('woot')</script>"\cf5 \expnd0\expndtw0\kerning0
+\
+<\cf12 \expnd0\expndtw0\kerning0
+h1\cf5 \expnd0\expndtw0\kerning0
+>Hello<\cf12 \expnd0\expndtw0\kerning0
+small\cf5 \expnd0\expndtw0\kerning0
+> \cf7 \expnd0\expndtw0\kerning0
+&lt;\cf5 \expnd0\expndtw0\kerning0
+script\cf7 \expnd0\expndtw0\kerning0
+&gt;\cf5 \expnd0\expndtw0\kerning0
+alert(\cf7 \expnd0\expndtw0\kerning0
+&#39;\cf5 \expnd0\expndtw0\kerning0
+woot\cf7 \expnd0\expndtw0\kerning0
+&#39;\cf5 \expnd0\expndtw0\kerning0
+)\cf7 \expnd0\expndtw0\kerning0
+&lt;\cf5 \expnd0\expndtw0\kerning0
+/script\cf7 \expnd0\expndtw0\kerning0
+&gt;\cf5 \expnd0\expndtw0\kerning0
+!<\cf12 \expnd0\expndtw0\kerning0
+small\cf5 \expnd0\expndtw0\kerning0
+></\cf12 \expnd0\expndtw0\kerning0
+h1\cf5 \expnd0\expndtw0\kerning0
+>%\
+\pard\pardeftab720\sl440\sa300
+
+\fs28 \cf0 \cb1 \expnd0\expndtw0\kerning0
+Ass and titties look at that! we\'92re safe!\'a0\
+The templating language (in Flask\'92s case, its called Jinja2), is context aware and will automatically properly encode variables depending on where they are located in a document. This saves you against XSS by default.\
+\pard\pardeftab720\sa200
+
+\b\fs36 \cf0 \expnd0\expndtw0\kerning0
+Looping\
+\pard\pardeftab720\sl440\sa300
+
+\b0\fs28 \cf0 \expnd0\expndtw0\kerning0
+We passed through a simple string, lets pass through something more interesting and loop through it.\
+\pard\pardeftab720\sl380
+
+\fs26 \cf9 \cb6 \expnd0\expndtw0\kerning0
+#!/usr/bin/env python\
+\pard\pardeftab720\sl380
+\cf5 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl380
+\cf10 \expnd0\expndtw0\kerning0
+from\cf5 \expnd0\expndtw0\kerning0
+ flask \cf10 \expnd0\expndtw0\kerning0
+import\cf5 \expnd0\expndtw0\kerning0
+ Flask\
+\cf10 \expnd0\expndtw0\kerning0
+from\cf5 \expnd0\expndtw0\kerning0
+ flask \cf10 \expnd0\expndtw0\kerning0
+import\cf5 \expnd0\expndtw0\kerning0
+ request\
+\cf10 \expnd0\expndtw0\kerning0
+from\cf5 \expnd0\expndtw0\kerning0
+ flask \cf10 \expnd0\expndtw0\kerning0
+import\cf5 \expnd0\expndtw0\kerning0
+ render_template\
+\
+app \cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+ Flask(__name__)\
+\
+@app.route(\cf11 \expnd0\expndtw0\kerning0
+"/"\cf5 \expnd0\expndtw0\kerning0
+)\
+\cf10 \expnd0\expndtw0\kerning0
+def\cf5 \expnd0\expndtw0\kerning0
+ hello():\
+    \cf10 \expnd0\expndtw0\kerning0
+try\cf5 \expnd0\expndtw0\kerning0
+:\
+        name \cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+ request.args.get(\cf11 \expnd0\expndtw0\kerning0
+'name'\cf5 \expnd0\expndtw0\kerning0
+)\
+        \cf10 \expnd0\expndtw0\kerning0
+assert\cf5 \expnd0\expndtw0\kerning0
+ name\
+    \cf10 \expnd0\expndtw0\kerning0
+except\cf5 \expnd0\expndtw0\kerning0
+:\
+        name \cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+ \cf11 \expnd0\expndtw0\kerning0
+'lame'\cf5 \expnd0\expndtw0\kerning0
+\
+    \cf10 \expnd0\expndtw0\kerning0
+return\cf5 \expnd0\expndtw0\kerning0
+ \cf11 \expnd0\expndtw0\kerning0
+"Hello %s"\cf5 \expnd0\expndtw0\kerning0
+ \cf7 \expnd0\expndtw0\kerning0
+%\cf5 \expnd0\expndtw0\kerning0
+ str(name)\
+\
+@app.route(\cf11 \expnd0\expndtw0\kerning0
+"/render"\cf5 \expnd0\expndtw0\kerning0
+)\
+\cf10 \expnd0\expndtw0\kerning0
+def\cf5 \expnd0\expndtw0\kerning0
+ render():\
+    req_headers \cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+ request.headers\
+\
+    \cf10 \expnd0\expndtw0\kerning0
+try\cf5 \expnd0\expndtw0\kerning0
+:\
+        name \cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+ request.args.get(\cf11 \expnd0\expndtw0\kerning0
+'name'\cf5 \expnd0\expndtw0\kerning0
+)\
+        \cf10 \expnd0\expndtw0\kerning0
+assert\cf5 \expnd0\expndtw0\kerning0
+ name\
+    \cf10 \expnd0\expndtw0\kerning0
+except\cf5 \expnd0\expndtw0\kerning0
+:\
+        name \cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+ \cf11 \expnd0\expndtw0\kerning0
+'lame'\cf5 \expnd0\expndtw0\kerning0
+\
+    \cf10 \expnd0\expndtw0\kerning0
+return\cf5 \expnd0\expndtw0\kerning0
+ render_template(\cf11 \expnd0\expndtw0\kerning0
+'tutorial.html'\cf5 \expnd0\expndtw0\kerning0
+,\
+                           name\cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+name,\
+                           headers\cf7 \expnd0\expndtw0\kerning0
+=\cf5 \expnd0\expndtw0\kerning0
+req_headers)\
+\
+\cf10 \expnd0\expndtw0\kerning0
+if\cf5 \expnd0\expndtw0\kerning0
+ __name__ \cf7 \expnd0\expndtw0\kerning0
+==\cf5 \expnd0\expndtw0\kerning0
+ \cf11 \expnd0\expndtw0\kerning0
+"__main__"\cf5 \expnd0\expndtw0\kerning0
+:\
+    app.run()\
+\pard\pardeftab720\sl440\sa300
+
+\fs28 \cf0 \cb1 \expnd0\expndtw0\kerning0
+Ok so under\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+/render
+\f1 \cb1 \expnd0\expndtw0\kerning0
+, we define\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+req_headers
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0to hold the contents of\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+request.headers
+\f1 \cb1 \expnd0\expndtw0\kerning0
+. This returns a list of tuples of key,value. So i[0] is the keyname and i[1] is the value, if we use i to iterate through the list.\
+We pass\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+req_headers
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0onto the template, giving it a name of\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+headers
+\f1 \cb1 \expnd0\expndtw0\kerning0
+.\
+Lets modify the template.\
+\pard\pardeftab720\sl380
+
+\fs26 \cf5 \cb6 \expnd0\expndtw0\kerning0
+<\cf12 \expnd0\expndtw0\kerning0
+h1\cf5 \expnd0\expndtw0\kerning0
+>Hello<\cf12 \expnd0\expndtw0\kerning0
+small\cf5 \expnd0\expndtw0\kerning0
+> \{\{name\}\}!<\cf12 \expnd0\expndtw0\kerning0
+small\cf5 \expnd0\expndtw0\kerning0
+></\cf12 \expnd0\expndtw0\kerning0
+h1\cf5 \expnd0\expndtw0\kerning0
+>\
+\
+<\cf12 \expnd0\expndtw0\kerning0
+div\cf5 \expnd0\expndtw0\kerning0
+>\
+    <\cf12 \expnd0\expndtw0\kerning0
+table\cf5 \expnd0\expndtw0\kerning0
+>\
+        <\cf12 \expnd0\expndtw0\kerning0
+thead\cf5 \expnd0\expndtw0\kerning0
+>\
+         <\cf12 \expnd0\expndtw0\kerning0
+tr\cf5 \expnd0\expndtw0\kerning0
+>\
+            <\cf12 \expnd0\expndtw0\kerning0
+th\cf5 \expnd0\expndtw0\kerning0
+>Header Name</\cf12 \expnd0\expndtw0\kerning0
+th\cf5 \expnd0\expndtw0\kerning0
+>\
+            <\cf12 \expnd0\expndtw0\kerning0
+th\cf5 \expnd0\expndtw0\kerning0
+>Value</\cf12 \expnd0\expndtw0\kerning0
+th\cf5 \expnd0\expndtw0\kerning0
+>\
+         </\cf12 \expnd0\expndtw0\kerning0
+tr\cf5 \expnd0\expndtw0\kerning0
+>\
+        </\cf12 \expnd0\expndtw0\kerning0
+thead\cf5 \expnd0\expndtw0\kerning0
+>\
+        <\cf12 \expnd0\expndtw0\kerning0
+tbody\cf5 \expnd0\expndtw0\kerning0
+>\
+           \{% for i in headers %\}\
+            <\cf12 \expnd0\expndtw0\kerning0
+tr\cf5 \expnd0\expndtw0\kerning0
+>\
+                <\cf12 \expnd0\expndtw0\kerning0
+td\cf5 \expnd0\expndtw0\kerning0
+>\{\{i[0]\}\}</\cf12 \expnd0\expndtw0\kerning0
+td\cf5 \expnd0\expndtw0\kerning0
+>\
+                <\cf12 \expnd0\expndtw0\kerning0
+td\cf5 \expnd0\expndtw0\kerning0
+>\{\{i[1]\}\}</\cf12 \expnd0\expndtw0\kerning0
+td\cf5 \expnd0\expndtw0\kerning0
+>\
+           \{% endfor %\}\
+            </\cf12 \expnd0\expndtw0\kerning0
+tr\cf5 \expnd0\expndtw0\kerning0
+>\
+        </\cf12 \expnd0\expndtw0\kerning0
+tbody\cf5 \expnd0\expndtw0\kerning0
+>\
+    </\cf12 \expnd0\expndtw0\kerning0
+table\cf5 \expnd0\expndtw0\kerning0
+>\
+</\cf12 \expnd0\expndtw0\kerning0
+div\cf5 \expnd0\expndtw0\kerning0
+>\
+\pard\pardeftab720\sl440\sa300
+
+\fs28 \cf0 \cb1 \expnd0\expndtw0\kerning0
+Here, we add a simple standard table. You\'92ll notice that for the body of the table, we dont know the value of the headers, but we passed in a variable called headers. We iterate through that using\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+\{% for i in headers %\}
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0which is very similar to a python for loop. Then, we have two data values in the same row,\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+i[0]
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0and\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+i[1]
+\f1 \cb1 \expnd0\expndtw0\kerning0
+, referring back to what we knew was passed in the tuple. Then we end the for loop. Notice that earlier when we just passed a string we used\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+\{\{name\}\}
+\f1 \cb1 \expnd0\expndtw0\kerning0
+, but here when we\'92re using logic/expressions, we use\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+\{% %\}
+\f1 \cb1 \expnd0\expndtw0\kerning0
+; this is jinja\'92s syntax and you\'92ll head to read the docs to see what other expression are available.\
+Whats it look like?\
+Hello chris!\
+\pard\pardeftab720\sl380
+
+\f2\fs26 \cf0 \cb4 \expnd0\expndtw0\kerning0
+Header Name Value\
+\
+\
+User-Agent  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 Safari/537.36\
+Connection  keep-alive\
+Host    localhost:5000\
+Cache-Control   max-age=0\
+Accept  text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8\
+Accept-Language en-US,en;q=0.8,es;q=0.6\
+Content-Type    \
+Accept-Encoding gzip,deflate,sdch \
+\pard\pardeftab720\sa200
+
+\f1\b\fs56 \cf0 \cb1 \expnd0\expndtw0\kerning0
+Your homework\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl440
+\ls1\ilvl0
+\b0\fs28 \cf0 \kerning1\expnd0\expndtw0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+Get all the above working; understand it, ask me/rohlf whatever you get stuck on.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+Write a web app that will take input from a user. Using the same route\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+/calculate
+\f1 \cb1 \expnd0\expndtw0\kerning0
+, gather two parameters from the visitor.\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+value1
+\f1 \cb1 \expnd0\expndtw0\kerning0
+\'a0and\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+value2
+\f1 \cb1 \expnd0\expndtw0\kerning0
+. If i perform a GET on\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+calculate
+\f1 \cb1 \expnd0\expndtw0\kerning0
+, those two values will be added together. If I perform a POST on\'a0
+\f2 \cb4 \expnd0\expndtw0\kerning0
+/calculate
+\f1 \cb1 \expnd0\expndtw0\kerning0
+, those two values will be multiplied together\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+Return the answers in a table, showing value 1, value 2, the operation performed, and the result\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	4.	}\expnd0\expndtw0\kerning0
+Add error handling, make sure value1 and value2 are numbers; if they\'92re text, do something else up to you.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	5.	}\expnd0\expndtw0\kerning0
+Put this all in a virtualenv, make a requirements.txt and ship us the code and requirements.\
+\pard\tx720\pardeftab720\sl440
+\cf0 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\pard\pardeftab720\sl120
+
+\f0\fs22 \cf13 \cb14 \expnd0\expndtw0\kerning0
+\
+}
