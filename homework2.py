@@ -7,24 +7,14 @@ from flask import render_template
 app = Flask(__name__)
 
 @app.route("/")
-def hello():
+def home():
     try:
         name = request.args.get('name')
         assert name
     except:
-        name = 'lame'
-    return "Hello %s" % str(name)
+        name = 'Lame! What\'s your name?'
+    return render_template('tutorial.html',name=name)
 
-@app.route("/render")
-def render():
-    req_headers = request.headers
-
-    try:
-        name = request.args.get('name')
-        assert name
-    except:
-        name = 'lame'
-    return render_template('tutorial2.html',name=name,headers=req_headers)
 
 @app.route("/calculate", methods=['GET','POST'])
 def calculate():
@@ -93,11 +83,7 @@ After lots of trial and error I've determined this doesnt work:
 
 
 if __name__ == "__main__":
-    app.run()
-
-
-if __name__ == "__main__":
-#	app.debug = True
+	app.debug = True
 	app.run()
 
 
