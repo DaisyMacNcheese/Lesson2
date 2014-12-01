@@ -15,10 +15,6 @@ def home():
         name = 'Lame! What\'s your name?'
     return render_template('tutorial.html',name=name)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> FETCH_HEAD
 @app.route("/calculate", methods=['GET','POST'])
 def calculate():
 
