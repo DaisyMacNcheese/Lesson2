@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='Homework2',
+    name='homework2',
     version='0.1',
     description='Simple Flask web application with user input',
     author='DaisyMacNcheese',
