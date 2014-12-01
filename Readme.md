@@ -12,11 +12,16 @@ This is a homework assignment to get used to using Flask and writing Python Web 
 7.	Put this all in a virtualenv, make a requirements.txt.
 
 ## Installation
-Coming.
+Install with:
+```
+pip install git+https://github.com/DaisyMacNcheese/Lesson2.git
+```
 
 ## Inputs
 name: Your name, any text
+
 value1: integer
+
 value2: integer
 
 ##Author
