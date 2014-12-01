@@ -6,6 +6,6 @@ setup(
     description='Simple Flask web application with user input',
     author='DaisyMacNcheese',
     url='https://github.com/DaisyMacNcheese/Lesson2',
-    install_requires=['Flask','Jinja2','MarkupSafe','Werkzeug','itsdangerous','wsgiref'],
+    install_requires=['Flask'],
     py_modules=['homework2']
 )
